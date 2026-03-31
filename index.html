@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seila</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <nav class="navegacao">
+            <ul class="lista">
+                <li class="elemento-lista">
+                    <a href="#inicio">Início</a>
+                </li>
+
+                <li class="elemento-lista">
+                    <a href="#sobre">Sobre</a>
+                </li>
+
+                <li class="elemento-lista">
+                    <a href="#edicao">Edições</a>
+                </li>
+
+                <li class="elemento-lista">
+                    <a href="#design">Design</a>
+                </li>
+
+                <li class="elemento-lista">
+                    <a href="#contato">Contato</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="imagem">
+            <img src="img/pfp.png" alt="logo-do-site" id="inicio" class="img">
+        </div>
+        <h1 class="titulo" id="sobre">Sobre mim</h1>
+        <div class="sobre">
+            <p class="texto-sobre">Sou um desenvolvedor front-end em constante evolução, com conhecimento sólido na
+                criação de interfaces web modernas, responsivas e visualmente agradáveis. Tenho experiência com HTML,
+                CSS e JavaScript, sempre buscando desenvolver layouts organizados, funcionais e com atenção aos
+                detalhes. <br><br> Além do desenvolvimento, também trabalho com edição de imagens voltada para redes
+                sociais, focando em ajustes de cor, iluminação e estética visual. Gosto de transformar imagens simples
+                em algo mais atrativo e alinhado com a identidade visual de cada projeto. <br> <br> Busco sempre
+                aprimorar
+                minhas habilidades, tanto no código quanto no design, unindo técnica e criatividade para criar
+                experiências mais completas e envolventes. Atualmente, estou aprofundando meus conhecimentos e
+                desenvolvendo projetos que fortalecem minha base como desenvolvedor e ampliam minha visão estética.
+            </p>
+        </div>
+
+        <div class="titulo-container">
+            <h3 class="titulo-trabalhos">Confira alguns dos meus <br>trabalhos a seguir</h3>
+        </div>
+        <section class="imagens" id="edicao">
+            <h3 class="titulo-imagens">O Antes Nunca Mais Volta</h3>
+            <p class="subtitulo-imagens">Edição e color de imagens</p>
+            <p class="subtitulo-imagens">Arraste para comparar</p>
+
+            <div class="galeria">
+                <div class="before-after">
+                    <img src="img/1 - Editada.png" class="img-depois">
+                    <img src="img/1 - NE.png" class="img-antes">
+                    <div class="slider-line"></div>
+                    <div class="slider-button"></div>
+                    <span class="label antes">ANTES</span>
+                    <span class="label depois">DEPOIS</span>
+                </div>
+
+                <div class="before-after">
+                    <img src="img/2 - Editada.png" class="img-depois">
+                    <img src="img/2 - NE.png" class="img-antes">
+
+                    <div class="slider-line"></div>
+                    <div class="slider-button"></div>
+                    <span class="label antes">ANTES</span>
+                    <span class="label depois">DEPOIS</span>
+                </div>
+            </div>
+
+            <a class="ver-mais" href="404.html">Ver mais</a>
+            <script>
+                const containers = document.querySelectorAll(".before-after");
+
+                containers.forEach(container => {
+                    let isDragging = false;
+
+                    const moveSlider = (e) => {
+                        if (!isDragging) return;
+
+                        // Pega a posição do mouse ou do toque
+                        const rect = container.getBoundingClientRect();
+                        const x = (e.pageX || e.touches[0].pageX) - rect.left;
+
+                        // Converte para porcentagem (0 a 100)
+                        let percent = (x / rect.width) * 100;
+
+                        // Trava nos limites da imagem
+                        if (percent < 0) percent = 0;
+                        if (percent > 100) percent = 100;
+
+                        // Aplica a porcentagem na variável CSS do container
+                        container.style.setProperty('--pos', `${percent}%`);
+                    };
+
+                    // Eventos de clique/toque
+                    container.addEventListener("mousedown", () => isDragging = true);
+                    window.addEventListener("mouseup", () => isDragging = false);
+                    window.addEventListener("mousemove", moveSlider);
+
+                    container.addEventListener("touchstart", () => isDragging = true);
+                    window.addEventListener("touchend", () => isDragging = false);
+                    window.addEventListener("touchmove", moveSlider);
+                });
+            </script>
+        </section>
+
+        <section id="design" class="design">
+            <h3 class="titulo-imagens">O Visual Fala Primeiro</h3>
+            <p class="subtitulo-imagens sub-design">Designs de divulgação de empresas e eventos</p>
+
+            <div class="grid-design">
+
+                <div class="card retangular">
+                    <img src="img/capacitação mídia.png" class="img-design">
+                    <p>Arte para divulgação do evento "Capacitação"</p>
+                </div>
+
+                <div class="card quadrada">
+                    <img src="img/Camiseta.png" class="img-design">
+                    <p>Arte para divulgação de camisetas</p>
+                </div>
+
+                <div class="card quadrada">
+                    <img src="img/Estilos camisa.png" class="img-design">
+                    <p>Arte para divulgação de camisetas</p>
+                </div>
+
+            </div>
+
+            <a class="ver-mais" href="404.html">Ver mais</a>
+        </section>
+    </main>
+
+
+    <section id="contato" class="contato">
+        <h2 class="contatos-titulo">Entre em contato</h2>
+
+        <form class="formulario-contato" onsubmit="enviarWhats(event)">
+            <div class="grupo-form">
+                <input class="campo-form" placeholder="Nome" id="nome">
+            </div>
+
+            <div class="grupo-form">
+                <textarea class="campo-form" placeholder="Mensagem" rows="6" id="mensagem"></textarea>
+            </div>
+
+            <button type="submit" class="botao-form">
+                <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path fill="currentColor"
+                                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <span>Enviar via WhatsApp</span>
+            </button>
+        </form>
+    </section>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+
+        function enviarWhats(event) {
+            event.preventDefault()
+            const nome = document.getElementById('nome').value
+            const mensagem = document.getElementById('mensagem').value
+            const telefone = '5549999344331'
+            const texto = encodeURIComponent(`Olá! Me chamo ${nome}, ${mensagem}`)
+            window.open(`https://wa.me/${telefone}?text=${texto}`, '_blank')
+        }
+    </script>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-secao">
+                <h3>Antonio Roberto</h3>
+                <p>Designer e Desenvolvedor júnior de Front End</p>
+            </div>
+
+            <div class="footer-secao">
+                <h3>Contato</h3>
+                <p>Telefone: (49) 99935-4331</p>
+                <p>Email: antoniocurcino.cnv@gmail.com</p>
+            </div>
+
+            <div class="footer-secao">
+                <h3>Siga-me em minhas redes sociais</h3>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/antoniorober_to" class="social-icones instagram" target="_blank"
+                        aria-label="Instagram">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                    <a href="https://wa.me/5549999354331" class="social-icones whatsapp" target="_blank"
+                        aria-label="WhatsApp">
+                        <ion-icon name="logo-whatsapp"></ion-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <p class="footer-copy">© 2026 Antonio Roberto. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>
